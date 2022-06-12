@@ -1,4 +1,5 @@
 const path = require('path');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -9,10 +10,11 @@ module.exports = {
     // iife: true,
     library: {
       name: 'Exterior',
-      type: 'window'
-    }
+      type: 'umd'
+    },
+    globalObject: 'this'
   },
-  mode: 'development',
+  mode: 'production',
   devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
@@ -25,6 +27,11 @@ module.exports = {
       serverSideRender: true,
       writeToDisk: true,
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
   },
   module: {
     rules: [
@@ -36,5 +43,11 @@ module.exports = {
         },
       }
     ]
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      extractComments: false
+    })],
   },
 }
