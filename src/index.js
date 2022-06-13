@@ -1,5 +1,5 @@
-export function sayHi() {
-  console.log('Hi, there.');
+export function greeting() {
+  return 'Hello, there.';
 }
 
 export const settings = {

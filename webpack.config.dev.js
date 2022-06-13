@@ -21,6 +21,7 @@ module.exports = {
     },
     compress: true,
     port: 9000,
+    // server: 'https',
     devMiddleware: {
       index: true,
       mimeTypes: { phtml: 'text/html' },
