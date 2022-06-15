@@ -6,6 +6,11 @@ const getUndecoratedLinks = (state, props) => {
   return links.filter((link) => !link.getAttribute('shopback-serp'));
 };
 
+export const getStandDownNotifierStandDownAt = createSelector(
+  getMerchantById,
+  (merchant) => merchant && merchant.standDownAt
+);
+
 export const merchantHasCashback = createSelector(getMerchantById, (merchant) => {
   if (merchant && merchant.cashback) {
     return !!parseFloat(merchant.cashback.amount);
