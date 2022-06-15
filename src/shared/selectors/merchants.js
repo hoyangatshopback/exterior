@@ -1,3 +1,4 @@
+import { cloneDeep } from 'lodash';
 import { createSelector } from 'reselect';
 import { isYahooRedirectUrl } from '@/shared/urls';
 
@@ -5,6 +6,19 @@ const getUndecoratedLinks = (state, props) => {
   const { links } = props;
   return links.filter((link) => !link.getAttribute('shopback-serp'));
 };
+
+export const getIsNewUrlMatching = (state) => state.settings.newUrlMatchingToggle;
+
+const getMerchants = (state) => {
+  if (getIsNewUrlMatching(state)) return state.merchantsV2;
+  return state.merchants;
+};
+
+const getById = createSelector(getMerchants, ({ byId }) => cloneDeep(byId));
+
+const getId = (state, props) => props.id;
+
+export const getMerchantById = createSelector(getById, getId, (byId, id) => byId[id]);
 
 export const getStandDownNotifierStandDownAt = createSelector(
   getMerchantById,
