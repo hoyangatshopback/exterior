@@ -1,4 +1,17 @@
 import { createSelector } from 'reselect';
+import { isYahooRedirectUrl } from '@/shared/urls';
+
+const getUndecoratedLinks = (state, props) => {
+  const { links } = props;
+  return links.filter((link) => !link.getAttribute('shopback-serp'));
+};
+
+export const merchantHasCashback = createSelector(getMerchantById, (merchant) => {
+  if (merchant && merchant.cashback) {
+    return !!parseFloat(merchant.cashback.amount);
+  }
+  return false;
+});
 
 export const getMerchantOfSerpMap = createSelector(
   [getUndecoratedLinks, (state) => state],
