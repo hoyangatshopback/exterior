@@ -5,17 +5,19 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const isDevelopment = false;
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    'Exterior': path.join(__dirname, 'src/index.js'),
+    'SerpLink': path.join(__dirname, 'src/components/SerpLink.js'),
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/dist',
-    // iife: true,
+    filename: '[name].js',
+    publicPath: '.',
     library: {
-      name: 'Exterior',
-      type: 'umd'
+      type: 'umd',
+      name: ['[name]'],
+      export: 'default',
     },
-    globalObject: 'this'
   },
   mode: 'production',
   devServer: {
@@ -79,7 +81,12 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin({
-      extractComments: false
+      extractComments: false,
+      terserOptions: {
+        format: {
+          comments: false,
+        },
+      },
     })],
   },
   resolve: {

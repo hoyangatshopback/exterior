@@ -11,7 +11,7 @@ const styles = {
     'align-items': 'flex-end',
   },
   shopbackSerpLogo: {
-    'background-image': `${logo} !important`,
+    'background-image': `url(${logo}) !important`,
     'background-repeat': 'no-repeat !important',
     'background-size': '16px !important',
     width: '16px !important',

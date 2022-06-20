@@ -1,1 +1,0 @@
-export const OTHER_SERP_PATTERN_LIST = ['.ebates-serp', '#gym_serp'];
