@@ -1,38 +1,67 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+// import styled, { css } from 'styled-components';
 
 import logo from '@/assets/content/icon-16.png';
 
 const styles = {
   shopbackSerpLink: {
-    display: 'flex !important',
-    height: '100% !important',
-    'justify-content': 'start',
-    'align-items': 'flex-end',
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'start',
+    alignItems: 'flex-end',
   },
   shopbackSerpLogo: {
-    'background-image': `url(${logo}) !important`,
-    'background-repeat': 'no-repeat !important',
-    'background-size': '16px !important',
-    width: '16px !important',
-    height: '16px !important',
+    backgroundImage: `url(${logo})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '16px',
+    width: '16px',
+    height: '16px',
   },
   shopbackSerpText: {
-    'font-family': '"Roboto", sans-serif !important',
-    'margin-left': '4px !important',
-    'font-size': '14px !important',
-    color: '#ff4e4e !important',
-    'line-height': '16px !important',
-    'vertical-align': 'top !important',
+    fontFamily: '"Roboto", sans-serif',
+    marginLeft: '4px',
+    fontSize: '14px',
+    color: '#ff4e4e',
+    lineHeight: '16px',
+    verticalAlign: 'top',
   }
 }
 
-const SerpLink = (props) => (
-  <div style={styles.shopbackSerpLink}>
-    <div style={styles.shopbackSerpLogo} />
-    <div style={styles.shopbackSerpText}>{props.merchant.serpCashbackInfo}</div>
-  </div>
-);
+// const ShopbackSerpLink = styled.div`
+//   display: flex;
+//   height: 100%;
+//   justify-content: start;
+//   align-items: flex-end;
+// `;
+
+// const ShopbackSerpLogo = styled.div`
+//   background-image: url(${logo});
+//   background-repeat: no-repeat;
+//   background-size: 16px;
+//   width: 16px;
+//   height: 16px;
+// `
+
+// const ShopbackSerpTextCSS = css`
+//   font-family: 'Roboto', sans-serif;
+//   margin-left: 4px;
+//   font-size: 14px;
+//   color: #ff4e4e;
+//   line-height: 16px;
+//   vertical-align: top;
+// `
+
+// const ShopbackSerpText = styled.div`${ShopbackSerpTextCSS}`
+
+const SerpLink = (props) => {
+  return (
+    <div style={styles.shopbackSerpLink}>
+      <div style={styles.shopbackSerpLogo} />
+      <div style={styles.shopbackSerpText}>{props?.merchant?.serpCashbackInfo || ''}</div>
+    </div>
+  )
+};
 
 SerpLink.propTypes = {
   merchant: PropTypes.object.isRequired,
