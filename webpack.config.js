@@ -1,12 +1,13 @@
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const os = require('os');
 
 const isDevelopment = false;
 
 module.exports = (env, argv) => {
-  // const whoami = argv.whoami || '';
-  // const whaleExtPath = argv.path || '';
+  const username = os.userInfo().username;
+  const whaleExtPath = env.path || '/Shopback/xtg/whale-ext/';
 
   return {
     entry: {
@@ -16,8 +17,8 @@ module.exports = (env, argv) => {
       'ClickMe': path.join(__dirname, 'src/components/ClickMe.js'),
     },
     output: {
-      path: path.join(__dirname, 'dist'),
-      // path: path.join('/Users', whoami, whaleExtPath, 'extension'),
+      // path: path.join(__dirname, 'dist'),
+      path: path.join('/Users', username, whaleExtPath, 'extension'),
       filename: '[name].js',
       publicPath: '.',
       library: {
